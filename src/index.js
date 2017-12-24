@@ -5,7 +5,6 @@ import { injectGlobal } from "styled-components";
 import "normalize.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
-require("dotenv").config();
 
 injectGlobal`
   * {
