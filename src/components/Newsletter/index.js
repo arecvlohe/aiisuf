@@ -9,7 +9,7 @@ export default () => (
   <Container>
     <Title>Newsletter</Title>
     <p>
-      Subscribe to our newsletter to get the latest news and event information!
+      Subscribe to our newsletter to get the latest news and event information.
     </p>
     <Formik
       initialValues={{
@@ -32,12 +32,16 @@ export default () => (
       }}
       onSubmit={(values, actions) => {
         axios
-          .post("http://localhost:3000/mailchimp", values)
-          .then(response => {
-            console.log("response", response);
+          .post("http://localhost:3000/api/mailchimp", values)
+          .then(({ response }) => {
+            // TODO: handle user added successfully
+            console.log("user added");
+            actions.setSubmitting(false);
+            actions.resetForm();
           })
-          .catch(err => {
-            console.error("error", err);
+          .catch(({ response }) => {
+            actions.setErrors({ serverError: response.data.title });
+            actions.setSubmitting(false);
           });
       }}
       render={({
@@ -72,6 +76,11 @@ export default () => (
             <button type="submit" disabled={isSubmitting}>
               Subscribe
             </button>
+            {errors.serverError && (
+              <div>
+                Sorry! There was an error: {errors.serverError.toLowerCase()}
+              </div>
+            )}
           </form>
         );
       }}
