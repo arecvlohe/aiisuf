@@ -30,7 +30,7 @@ export default () => (
       }}
       onSubmit={(values, actions) => {
         axios
-          .post(process.env.FORMSPREE, values)
+          .post("https://formspree.io/adam.recvlohe@gmail.com", values)
           .then(() => {
             actions.resetForm();
           })
