@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import yup from "yup";
 import { Formik, Field } from "formik";
 
@@ -14,7 +15,8 @@ export default () => (
       initialValues={{
         FNAME: "",
         LNAME: "",
-        email_address: ""
+        email_address: "",
+        status: "subscribed"
       }}
       validationSchema={() => {
         const schema = yup.object().shape({
@@ -29,8 +31,14 @@ export default () => (
         return schema;
       }}
       onSubmit={(values, actions) => {
-        // TODO: Create node backend to handle submission
-        console.log(values);
+        axios
+          .post("http://localhost:3000/mailchimp", values)
+          .then(response => {
+            console.log("response", response);
+          })
+          .catch(err => {
+            console.error("error", err);
+          });
       }}
       render={({
         values,
