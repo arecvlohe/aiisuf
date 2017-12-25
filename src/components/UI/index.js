@@ -27,7 +27,7 @@ const InputField = styled.input`
 
 const Error = styled.div`
   padding: 5px 0 0 0;
-  color: #ff0033;
+  color: #cc0000;
 `;
 
 export const Input = ({ field, form: { touched, errors }, ...props }) => {
@@ -47,21 +47,34 @@ export const Paragraph = styled.p`
 `;
 
 export const Button = styled.button`
-  background-color: #fff;
+  background-color: ${props =>
+    props.primary ? props.theme.indianpaintbrush : "#fff"};
   font-size: 16px;
-  border: 1px solid #333;
+  border: 1px solid
+    ${props => (props.primary ? props.theme.indianpaintbrush : "#333")};
   border-radius: 3px;
   padding: 20px 60px;
   transition: 200ms ease-in-out;
+  color: ${props => (props.primary ? "#fff" : "#333")};
   &:hover {
     cursor: pointer;
-    background-color: ${props => props.theme.indianpaintbrush};
-    color: white;
-    border: ${props => `1px solid ${props.theme.indianpaintbrush}`};
   }
 `;
 
 export const FullWidth = styled.div`
   width: 100vw;
   background-color: ${props => props.theme.indianpaintbrush};
+`;
+
+export const Message = styled.div`
+  background-color: ${props => (props.bgColor ? props.bgColor : "transparent")};
+  color: ${props => (props.textColor ? props.textColor : "#333")};
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 3px;
+`;
+
+export const ButtonBox = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
