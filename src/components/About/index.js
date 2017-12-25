@@ -36,9 +36,9 @@ export default () => (
         in this field. Along with academic programs, UF hosts events with
         prominent speakers from Indian Country such as Phillip Deloria (Standing
         Rock Sioux) as well as local activists like Bobby Billy (Independent
-        Traditional Seminole Tribe of Florida). The AIIS program is looking to
-        expand its reach and more community support would be greatly
-        appreciated.
+        Traditional Seminole Tribe of Florida). The AIIS program is seeking to
+        expand its reach and garner greater support from the greater Florida
+        community.
       </Paragraph>
     </Box>
   </FullWidth>

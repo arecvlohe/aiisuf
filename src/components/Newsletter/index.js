@@ -3,7 +3,15 @@ import axios from "axios";
 import yup from "yup";
 import { Formik, Field } from "formik";
 
-import { Container, Title, Input, Paragraph, Button } from "../UI";
+import {
+  Container,
+  Title,
+  Input,
+  Paragraph,
+  Button,
+  Message,
+  ButtonBox
+} from "../UI";
 
 const Box = Container.extend`
   padding: 200px 0 300px 0;
@@ -38,10 +46,10 @@ export default () => (
         axios
           .post("http://localhost:3000/api/mailchimp", values)
           .then(({ response }) => {
-            // TODO: handle user added successfully
-            console.log("user added");
             actions.setSubmitting(false);
-            actions.resetForm();
+            actions.setStatus({
+              message: "You have successfully been added to the newsletter."
+            });
           })
           .catch(({ response }) => {
             actions.setErrors({ serverError: response.data.title });
@@ -49,13 +57,15 @@ export default () => (
           });
       }}
       render={({
-        values,
         errors,
-        touched,
-        handleChange,
         handleBlur,
+        handleChange,
+        handleReset,
         handleSubmit,
-        isSubmitting
+        isSubmitting,
+        status,
+        touched,
+        values
       }) => {
         return (
           <form onSubmit={handleSubmit}>
@@ -77,14 +87,26 @@ export default () => (
               placeholder="Email"
               component={Input}
             />
-            <Button type="submit" disabled={isSubmitting}>
-              Subscribe
-            </Button>
+            <ButtonBox>
+              <Button type="button" onClick={handleReset}>
+                Reset Form
+              </Button>
+              <Button primary type="submit" disabled={isSubmitting}>
+                Subscribe
+              </Button>
+            </ButtonBox>
             {errors.serverError && (
-              <div>
-                Sorry! There was an error: {errors.serverError.toLowerCase()}
-              </div>
+              <Message bgColor="#FFD2D2" textColor="#D8000C">
+                Sorry! There was an error. The error was:{" "}
+                {errors.serverError.toLowerCase()}.
+              </Message>
             )}
+            {status &&
+              status.message && (
+                <Message bgColor="#DFF2BF" textColor="#4F8A10">
+                  {status.message}
+                </Message>
+              )}
           </form>
         );
       }}
