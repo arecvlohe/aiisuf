@@ -3,11 +3,16 @@ import axios from "axios";
 import yup from "yup";
 import { Formik, Field } from "formik";
 
-import { Container, Title, Input } from "../UI";
+import { Container, Title, Input, Paragraph, Button } from "../UI";
+
+const Box = Container.extend`
+  padding: 200px 0 300px 0;
+`;
 
 export default () => (
-  <Container>
+  <Box id="contact">
     <Title>Contact</Title>
+    <Paragraph>Feel free to reach out with any questions.</Paragraph>
     <Formik
       initialValues={{
         email: "",
@@ -70,13 +75,13 @@ export default () => (
             <Field
               name="message"
               type="text"
-              placeholder="message"
+              placeholder="Message"
               component={Input}
             />
-            <button type="submit">Contact</button>
+            <Button type="submit">Contact</Button>
           </form>
         );
       }}
     />
-  </Container>
+  </Box>
 );
