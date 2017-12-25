@@ -44,8 +44,8 @@ export default () => (
       }}
       onSubmit={(values, actions) => {
         axios
-          .post("http://localhost:3000/api/mailchimp", values)
-          .then(({ response }) => {
+          .post(`http://${window.location.host}/api/mailchimp`, values)
+          .then(() => {
             actions.setSubmitting(false);
             actions.setStatus({
               message: "You have successfully been added to the newsletter."
