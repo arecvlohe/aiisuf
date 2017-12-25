@@ -1,27 +1,45 @@
 import React from "react";
 import styled from "styled-components";
-import { Container } from "../UI";
+import { Container, Paragraph, Title, FullWidth } from "../UI";
 
 const Box = Container.extend`
-  padding: 20px 0;
+  padding: 300px 0;
 `;
 
-const Title = styled.div`
-  font-size: 40px;
-  text-transform: uppercase;
+const Anchor = styled.a`
+  color: #fff;
+  text-decoration: underline;
 `;
 
 export default () => (
-  <Box>
-    <Title>About</Title>
-    <p>
-      The University of Florida offers a minor and concentration in the field of
-      American Indian and Indigenous Studies. Along with acaademic programs, UF
-      hosts events with prominent speakers from Indian Country such as Phillip
-      Deloria (Standing Rock Sioux) as well as local activists like Bobby Billy
-      (Independent Traditional Seminole Tribe of Florida). The AIIS program is
-      looking to expand its reach and more community support would be greatly
-      appreciated.
-    </p>
-  </Box>
+  <FullWidth>
+    <Box id="about">
+      <Title textColor="#fff">About</Title>
+      <Paragraph textColor="#fff">
+        AIIS stands for American Indian and Indigenous Studies. In 2008 the
+        University of Florida began formally offering a{" "}
+        <Anchor
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://religion.ufl.edu/undergraduate-studies/aiis/aiis-minor/"
+        >
+          minor
+        </Anchor>{" "}
+        and{" "}
+        <Anchor
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://religion.ufl.edu/undergraduate-studies/aiis/aiis-con/"
+        >
+          concentration
+        </Anchor>{" "}
+        in this field. Along with academic programs, UF hosts events with
+        prominent speakers from Indian Country such as Phillip Deloria (Standing
+        Rock Sioux) as well as local activists like Bobby Billy (Independent
+        Traditional Seminole Tribe of Florida). The AIIS program is looking to
+        expand its reach and more community support would be greatly
+        appreciated.
+      </Paragraph>
+    </Box>
+  </FullWidth>
 );

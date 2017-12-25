@@ -7,11 +7,13 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "formik": "^0.10.5",
+    "jump.js": "^1.0.2",
     "normalize.css": "^7.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
     "styled-components": "^2.4.0",
+    "typed.js": "^2.0.6",
     "yup": "^0.23.0"
   },
   "scripts": {

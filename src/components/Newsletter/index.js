@@ -3,14 +3,18 @@ import axios from "axios";
 import yup from "yup";
 import { Formik, Field } from "formik";
 
-import { Container, Title, Input } from "../UI";
+import { Container, Title, Input, Paragraph, Button } from "../UI";
+
+const Box = Container.extend`
+  padding: 200px 0 300px 0;
+`;
 
 export default () => (
-  <Container>
+  <Box id="newsletter">
     <Title>Newsletter</Title>
-    <p>
+    <Paragraph>
       Subscribe to our newsletter to get the latest news and event information.
-    </p>
+    </Paragraph>
     <Formik
       initialValues={{
         FNAME: "",
@@ -73,9 +77,9 @@ export default () => (
               placeholder="Email"
               component={Input}
             />
-            <button type="submit" disabled={isSubmitting}>
+            <Button type="submit" disabled={isSubmitting}>
               Subscribe
-            </button>
+            </Button>
             {errors.serverError && (
               <div>
                 Sorry! There was an error: {errors.serverError.toLowerCase()}
@@ -85,5 +89,5 @@ export default () => (
         );
       }}
     />
-  </Container>
+  </Box>
 );
