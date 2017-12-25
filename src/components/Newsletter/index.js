@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import yup from "yup";
 import { Formik, Field } from "formik";
+import { pathOr } from "ramda";
 
 import {
   Container,
@@ -44,15 +45,17 @@ export default () => (
       }}
       onSubmit={(values, actions) => {
         axios
-          .post("http://localhost:3000/api/mailchimp", values)
-          .then(({ response }) => {
+          .post(`http://${window.location.host}/api/mailchimp`, values)
+          .then(() => {
             actions.setSubmitting(false);
             actions.setStatus({
               message: "You have successfully been added to the newsletter."
             });
           })
           .catch(({ response }) => {
-            actions.setErrors({ serverError: response.data.title });
+            actions.setErrors({
+              serverError: pathOr("unknown", ["data", "title"], response)
+            });
             actions.setSubmitting(false);
           });
       }}
@@ -98,7 +101,7 @@ export default () => (
             {errors.serverError && (
               <Message bgColor="#FFD2D2" textColor="#D8000C">
                 Sorry! There was an error. The error was:{" "}
-                {errors.serverError.toLowerCase()}.
+                {errors.serverError.toLowerCase()}. Please try again later.
               </Message>
             )}
             {status &&

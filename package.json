@@ -10,6 +10,7 @@
     "formik": "^0.10.5",
     "jump.js": "^1.0.2",
     "normalize.css": "^7.0.0",
+    "ramda": "^0.25.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
