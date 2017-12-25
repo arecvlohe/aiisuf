@@ -45,7 +45,7 @@ export default () => (
       }}
       onSubmit={(values, actions) => {
         axios
-          .post(`http://${window.location.host}/api/mailchimp`, values)
+          .post(`https://${window.location.host}/api/mailchimp`, values)
           .then(() => {
             actions.setSubmitting(false);
             actions.setStatus({
