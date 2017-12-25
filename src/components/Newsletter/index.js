@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import yup from "yup";
 import { Formik, Field } from "formik";
+import { pathOr } from "ramda";
 
 import {
   Container,
@@ -52,7 +53,9 @@ export default () => (
             });
           })
           .catch(({ response }) => {
-            actions.setErrors({ serverError: response.data.title });
+            actions.setErrors({
+              serverError: pathOr("unknown", ["data", "title"], response)
+            });
             actions.setSubmitting(false);
           });
       }}
@@ -98,7 +101,7 @@ export default () => (
             {errors.serverError && (
               <Message bgColor="#FFD2D2" textColor="#D8000C">
                 Sorry! There was an error. The error was:{" "}
-                {errors.serverError.toLowerCase()}.
+                {errors.serverError.toLowerCase()}. Please try again later.
               </Message>
             )}
             {status &&
