@@ -37,7 +37,7 @@ export default () => (
           LNAME: yup.string().required("Last name is required."),
           email_address: yup
             .string()
-            .email()
+            .email("Must be a valid email address.")
             .required("Email is required.")
         });
 

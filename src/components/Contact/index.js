@@ -36,7 +36,7 @@ export default () => (
           name: yup.string().required("Name is required."),
           email: yup
             .string()
-            .email()
+            .email("Must be a valid email address.")
             .required("Email is required."),
           message: yup.string().required("Message is required.")
         });

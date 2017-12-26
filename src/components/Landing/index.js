@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import Typed from "typed.js";
+import jump from "jump.js";
+import styled, { keyframes } from "styled-components";
+
+import chevronDown from "./down-arrow.svg";
 
 const Landing = styled.div`
   width: 100vw;
@@ -9,6 +12,7 @@ const Landing = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative;
 `;
 
 const Title = styled.div`
@@ -16,6 +20,23 @@ const Title = styled.div`
   font-weight: light;
   position: absolute;
   user-select: none;
+  color: ${props => props.theme.indianpaintbrush};
+`;
+
+const chevronGrowShrink = keyframes`
+  0% { transform: scale(1, 1) }
+  50% { transform: scale(2, 2) }
+  100% { transform: scale(1, 1)}
+`;
+
+const ChevronDown = styled.img`
+  position: absolute;
+  bottom: 20px;
+  fill: ${props => props.theme.indianpaintbrush};
+  animation: ${chevronGrowShrink} 2s linear infinite;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default class extends Component {
@@ -24,7 +45,14 @@ export default class extends Component {
       backSpeed: 50,
       showCursor: false,
       startDelay: 1000,
-      strings: ["American Indian", "Indigenous", "500 Nations", "AIIS at UF"],
+      strings: [
+        "Celebrating Culture",
+        "Honoring Tradition",
+        "Respecting Elders",
+        "Lifting Up Youth",
+        "Spreading Awareness",
+        "AIIS at UF"
+      ],
       typeSpeed: 50
     };
     this.typed = new Typed(this.el, options);
@@ -43,8 +71,13 @@ export default class extends Component {
           }}
           className="typed"
         >
-          American Indian
+          Celebrating Culture
         </Title>
+        <ChevronDown
+          onClick={() => jump("#about")}
+          alt="down arrow"
+          src={chevronDown}
+        />
       </Landing>
     );
   }
