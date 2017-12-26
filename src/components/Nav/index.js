@@ -10,7 +10,7 @@ const Navbar = styled.nav`
   z-index: 10;
   transition: background-color 500ms ease-in-out;
   background-color: ${props =>
-    props.fadeToBlack ? props.theme.indianpaintbrush : "transparent"};
+    props.fadeToOrange ? props.theme.indianpaintbrush : "transparent"};
 `;
 
 const BoxEnd = styled.div`
@@ -23,11 +23,11 @@ const NavLink = styled.a`
   font-size: 18px;
   font-weight: 300;
   color: ${props =>
-    props.fadeToBlack ? "#fff" : props.theme.indianpaintbrush};
+    props.fadeToOrange ? "#fff" : props.theme.indianpaintbrush};
   transition: 200ms ease-in-out;
   &:hover {
     color: ${props =>
-      props.fadeToBlack ? "#fff" : props.theme.indianpaintbrush};
+      props.fadeToOrange ? "#fff" : props.theme.indianpaintbrush};
     cursor: pointer;
   }
 `;
@@ -38,7 +38,7 @@ const NavBox = styled.div`
 
 const Logo = styled.div`
   color: ${props =>
-    props.fadeToBlack ? "white" : props.theme.indianpaintbrush};
+    props.fadeToOrange ? "white" : props.theme.indianpaintbrush};
   padding: 10px;
   font-size: 18px;
   font-weight: 700;
@@ -49,45 +49,48 @@ const Logo = styled.div`
 
 export default class extends Component {
   state = {
-    fadeToBlack: false
+    fadeToOrange: false
   };
 
   componentDidMount() {
-    window.document.onscroll = ({ pageY }) => {
-      if (pageY > 30) {
-        this.setState({ fadeToBlack: true });
+    window.onscroll = () => {
+      if (window.scrollY > 30) {
+        this.setState({ fadeToOrange: true });
       } else {
-        this.setState({ fadeToBlack: false });
+        this.setState({ fadeToOrange: false });
       }
     };
   }
 
   render() {
-    const { fadeToBlack } = this.state;
+    const { fadeToOrange } = this.state;
     return (
-      <Navbar fadeToBlack={fadeToBlack}>
+      <Navbar fadeToOrange={fadeToOrange}>
         <Logo
-          fadeToBlack={fadeToBlack}
+          fadeToOrange={fadeToOrange}
           onClick={() => jump(window.document.body)}
         >
           AIISUF
         </Logo>
         <BoxEnd>
           <NavBox>
-            <NavLink fadeToBlack={fadeToBlack} onClick={() => jump("#about")}>
+            <NavLink fadeToOrange={fadeToOrange} onClick={() => jump("#about")}>
               About
             </NavLink>
           </NavBox>
           <NavBox>
             <NavLink
-              fadeToBlack={fadeToBlack}
+              fadeToOrange={fadeToOrange}
               onClick={() => jump("#newsletter")}
             >
               Newsletter
             </NavLink>
           </NavBox>
           <NavBox>
-            <NavLink fadeToBlack={fadeToBlack} onClick={() => jump("#contact")}>
+            <NavLink
+              fadeToOrange={fadeToOrange}
+              onClick={() => jump("#contact")}
+            >
               Contact
             </NavLink>
           </NavBox>

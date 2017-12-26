@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { ifElse, always, prop, path, propOr } from "ramda";
+
+export const getColor = color => props => path(["theme", color], props);
 
 export const Container = styled.div`
   max-width: 900px;
@@ -9,8 +12,11 @@ export const Container = styled.div`
 export const Title = styled.div`
   font-size: 40px;
   text-transform: uppercase;
-  color: ${props =>
-    props.textColor ? props.textColor : props.theme.indianpaintbrush};
+  color: ${ifElse(
+    prop("textColor"),
+    prop("textColor"),
+    getColor("indianpaintbrush")
+  )};
 `;
 
 const InputBox = styled.div`
@@ -24,7 +30,7 @@ const InputField = styled.input`
   border: 1px solid #333;
   padding: 10px;
   &:focus {
-    border: 1px solid ${props => props.theme.indianpaintbrush};
+    border: 1px solid ${getColor("indianpaintbrush")};
   }
 `;
 
@@ -46,32 +52,38 @@ export const Input = ({ field, form: { touched, errors }, ...props }) => {
 export const Paragraph = styled.p`
   font-weight: 300;
   font-size: 24px;
-  color: ${props => (props.textColor ? props.textColor : props.theme.black)};
+  color: ${propOr("#333", "textColor")};
 `;
 
 export const Button = styled.button`
-  background-color: ${props =>
-    props.primary ? props.theme.indianpaintbrush : "#fff"};
+  background-color: ${ifElse(
+    prop("primary"),
+    getColor("indianpaintbrush"),
+    always("#fff")
+  )};
   font-size: 16px;
   border: 1px solid
-    ${props => (props.primary ? props.theme.indianpaintbrush : "#333")};
+    ${ifElse(prop("primary"), getColor("indianpaintbrush"), getColor("black"))};
   border-radius: 3px;
   padding: 20px 60px;
   transition: 200ms ease-in-out;
-  color: ${props => (props.primary ? "#fff" : "#333")};
+  color: ${ifElse(prop("primary"), always("#fff"), getColor("black"))};
   &:hover {
     cursor: pointer;
+  }
+  &:focus {
+    outline: none;
   }
 `;
 
 export const FullWidth = styled.div`
   width: 100vw;
-  background-color: ${props => props.theme.indianpaintbrush};
+  background-color: ${getColor("indianpaintbrush")};
 `;
 
 export const Message = styled.div`
-  background-color: ${props => (props.bgColor ? props.bgColor : "transparent")};
-  color: ${props => (props.textColor ? props.textColor : "#333")};
+  background-color: ${propOr("transparent", "bgColor")};
+  color: ${propOr("#333", "textColor")};
   padding: 10px;
   margin: 10px 0;
   border-radius: 3px;
