@@ -23,6 +23,9 @@ const InputField = styled.input`
   border-radius: 3px;
   border: 1px solid #333;
   padding: 10px;
+  &:focus {
+    border: 1px solid ${props => props.theme.indianpaintbrush};
+  }
 `;
 
 const Error = styled.div`

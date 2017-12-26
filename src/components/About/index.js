@@ -37,8 +37,7 @@ export default () => (
         prominent speakers from Indian Country such as Phillip Deloria (Standing
         Rock Sioux) as well as local activists like Bobby Billy (Independent
         Traditional Seminole Tribe of Florida). The AIIS program is seeking to
-        expand its reach and garner greater support from the greater Florida
-        community.
+        expand its reach and garner support from the greater Florida community.
       </Paragraph>
     </Box>
   </FullWidth>

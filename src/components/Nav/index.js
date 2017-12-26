@@ -22,7 +22,8 @@ const NavLink = styled.a`
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 300;
-  color: ${props => (props.fadeToBlack ? "#fff" : props.theme.black)};
+  color: ${props =>
+    props.fadeToBlack ? "#fff" : props.theme.indianpaintbrush};
   transition: 200ms ease-in-out;
   &:hover {
     color: ${props =>
@@ -36,10 +37,14 @@ const NavBox = styled.div`
 `;
 
 const Logo = styled.div`
-  color: ${props => (props.fadeToBlack ? "white" : props.theme.black)};
+  color: ${props =>
+    props.fadeToBlack ? "white" : props.theme.indianpaintbrush};
   padding: 10px;
   font-size: 18px;
   font-weight: 700;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default class extends Component {
@@ -48,20 +53,25 @@ export default class extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener("scroll", ({ pageY }) => {
+    window.document.onscroll = ({ pageY }) => {
       if (pageY > 30) {
         this.setState({ fadeToBlack: true });
       } else {
         this.setState({ fadeToBlack: false });
       }
-    });
+    };
   }
 
   render() {
     const { fadeToBlack } = this.state;
     return (
       <Navbar fadeToBlack={fadeToBlack}>
-        <Logo fadeToBlack={fadeToBlack}>AIIS at UF</Logo>
+        <Logo
+          fadeToBlack={fadeToBlack}
+          onClick={() => jump(window.document.body)}
+        >
+          AIISUF
+        </Logo>
         <BoxEnd>
           <NavBox>
             <NavLink fadeToBlack={fadeToBlack} onClick={() => jump("#about")}>
