@@ -63,6 +63,7 @@ const HamburgerMenuBox = styled.div`
   }
   svg {
     &:hover {
+      user-select: none;
       cursor: pointer;
     }
   }
