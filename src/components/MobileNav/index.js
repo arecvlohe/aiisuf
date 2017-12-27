@@ -9,10 +9,10 @@ const defaultStyle = {
 };
 
 const transitionStyles = {
-  entering: { opacity: 0, zIndex: 0 },
+  entering: { opacity: 0, zIndex: -1 },
   entered: { opacity: 1, zIndex: 10 },
   exiting: { opacity: 1, zIndex: 10 },
-  exited: { opacity: 0, zIndex: 0 }
+  exited: { opacity: 0, zIndex: -1 }
 };
 
 const MobileNav = styled.div`
