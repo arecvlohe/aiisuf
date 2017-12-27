@@ -6,7 +6,7 @@ import styled, { keyframes } from "styled-components";
 import chevronDown from "./down-arrow.svg";
 
 const Landing = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -21,6 +21,10 @@ const Title = styled.div`
   position: absolute;
   user-select: none;
   color: ${props => props.theme.indianpaintbrush};
+
+  @media (max-width: 500px) {
+    font-size: 50px;
+  }
 `;
 
 const chevronGrowShrink = keyframes`
@@ -51,7 +55,7 @@ export default class extends Component {
         "Respecting Elders",
         "Lifting Up Youth",
         "Spreading Awareness",
-        "AIIS at UF"
+        "AIIS@UF"
       ],
       typeSpeed: 50
     };

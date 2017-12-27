@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Container, Paragraph, Title, FullWidth } from "../UI";
 
 const Box = Container.extend`
-  padding: 300px 0;
+  padding: 300px 20px;
 `;
 
 const Anchor = styled.a`

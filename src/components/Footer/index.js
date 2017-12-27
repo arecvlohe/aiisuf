@@ -11,7 +11,7 @@ const Footer = styled.footer`
 `;
 
 const Box = Container.extend`
-  padding: 20px 0;
+  padding: 20px;
 `;
 
 export default () => (

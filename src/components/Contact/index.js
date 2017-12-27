@@ -16,7 +16,7 @@ import {
 const error = require("debug")("client:error");
 
 const Box = Container.extend`
-  padding: 200px 0 300px 0;
+  padding: 200px 20px 300px 20px;
 `;
 
 export default () => (
