@@ -56,6 +56,7 @@ export const Paragraph = styled.p`
 `;
 
 export const Button = styled.button`
+  margin: 10px 0;
   background-color: ${ifElse(
     prop("primary"),
     getColor("indianpaintbrush"),
@@ -73,6 +74,10 @@ export const Button = styled.button`
   }
   &:focus {
     outline: none;
+  }
+
+  @media (max-width: 450px) {
+    min-width: 100%;
   }
 `;
 
@@ -92,4 +97,5 @@ export const Message = styled.div`
 export const ButtonBox = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
